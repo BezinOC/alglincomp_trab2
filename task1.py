@@ -193,15 +193,14 @@ class Function:
         file_path = r"t1_" + str(t1) + r"_t2_" + str(t2) + r".txt"
         if self.icod == 1:
             x = self.newton_raphson()
-            s = settings.task1_1
-            path = os.path.join(s["out_path"], file_path)
         elif self.icod == 2:
             x = self.broyden()
-            s = settings.task1_2
-            path = os.path.join(s["out_path"], file_path)
         else:
             raise Exception("Icod must be 1 (Newton) or 2 (Broyden)")
 
+        s = settings.task1[self.icod]
+        path = os.path.join(s["out_path"], file_path)
+        
         with open(path, 'w') as f:
             f.write("METODO ESCOLHIDO: " + s["name"] + "\n")
             f.write("INPUTS: t1 = " + str(t1) + "; t2 = " + str(t2) + "\n")

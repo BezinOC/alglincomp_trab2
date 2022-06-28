@@ -1,0 +1,3 @@
+METODO ESCOLHIDO: Bissecao
+INPUTS: c1 = -1; c2 = 2; c3 = 2; c4 = 4
+OUTPUT: x = -0.61749267578125

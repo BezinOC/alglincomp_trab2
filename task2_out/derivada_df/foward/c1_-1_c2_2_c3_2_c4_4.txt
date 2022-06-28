@@ -1,0 +1,3 @@
+METODO ESCOLHIDO: Derivada Passo a Frente
+INPUTS: c1 = -1; c2 = 2; c3 = 2; c4 = 4
+OUTPUT: x = -590.8645756164788

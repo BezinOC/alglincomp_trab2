@@ -1,0 +1,3 @@
+METODO ESCOLHIDO: Gauss-Legendre
+INPUTS: c1 = -1; c2 = 2; c3 = 2; c4 = 4
+OUTPUT: x = -2.8222724491945437

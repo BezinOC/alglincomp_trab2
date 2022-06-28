@@ -1,14 +1,20 @@
-import math
+import math, os
 from config import config
 settings = config.Settings()
 
 class Function:
 
-    def __init__(self, icod, c1, c2, c3, c4, tolm=0.0001, icod2 = 1):
+    def __init__(self, icod, c1, c2, c3, c4, tolm=0.0001, icod2 = 1, a=1, b=2, n=3, x=3, dx=0.00001, dx2=0.00002):
         self.tolm = tolm
         self.icod = icod
         self.c = [c1, c2, c3, c4]
         self.icod2 = icod2
+        self.a = a
+        self.b = b
+        self.n = n
+        self.x = x
+        self.dx = dx
+        self.dx2 = dx2
         #function = c1*exp(c2*x) + c3*x^c4
 
     def evaluate(self, x):
@@ -43,15 +49,24 @@ class Function:
         while abs(a-b) > self.tolm:
             x = (a+b)/2
             f = self.evaluate(x)
+            fa = self.evaluate(a)
+            fb = self.evaluate(b)
             if f > 0:
-                b = x
-            else: 
-                a = x
+                if fa > 0:
+                    a = x
+                else:
+                    b = x
+            else:
+                if fa < 0:
+                    a = x
+                else: 
+                    b = x
             if niter > 100: raise Exception("Maximum number of interations reached")
             niter += 1
         return x
 
-    def newton_raphson(self, x0=1):
+    def newton_raphson(self, x=1):
+        x0 = x
         niter = 0
         while (niter < 100):
             x1 = x0 - (self.evaluate(x0) / (self.central_dif(x0)))
@@ -85,39 +100,49 @@ class Function:
         return sum
 
     def solve(self):
+
+        c1, c2, c3, c4 = self.c[0], self.c[1], self.c[2], self.c[3]
+        file_path = r"c1_" + str(c1) + r"_c2_" + str(c2) + r"_c3_" + str(c3) + r"_c4_" + str(c4) + r".txt"
+
         if self.icod == 1:
             if self.icod2 == 1:
                 x = self.newton_raphson()
             elif self.icod2 == 2:
-                x = self.biss()
+                x = self.biss(self.a, self.b)
             else:
                 raise Exception("Icod2 must be 1 or 2 for Icod == 1")
         elif self.icod == 2:
-            print(1)
+            if self.icod2 == 1:
+                x = self.int_polinomial(self.a, self.b, self.n)
+            elif self.icod2 == 2:
+                x = self.quadratura(self.a, self.b, self.n)
+            else:
+                raise Exception("Icod2 must be 1 or 2 for Icod == 2")
         elif self.icod == 3:
             if self.icod2 == 1:
-                x = self.foward_dif()
+                x = self.foward_dif(self.x, self.dx)
             elif self.icod2 == 2:
-                x = self.back_dif()
+                x = self.back_dif(self.x, self.dx)
             elif self.icod2 == 3:
-                x = self.central_dif()
+                x = self.central_dif(self.x, self.dx)
             else:
                 raise Exception("Icod2 must be 1, 2 or 3 for Icod == 3")
         elif self.icod == 4:
             if self.icod2 == 1:
-                x = self.richard()
+                x = self.richard(self.x, self.dx, self.dx2)
             else:
                 raise Exception("Icod2 must be 1 for Icod == 4")
         else:
             raise Exception("Icod must be equal to 1, 2, 3 or 4")
 
-        # with open(path, 'w') as f:
-        #     f.write("METODO ESCOLHIDO: " + s["name"] + "\n")
-        #     f.write("INPUTS: t1 = " + str(t1) + "; t2 = " + str(t2) + "\n")
-        #     f.write("OUTPUTS: "  + "\n")
-        #     for i in range(len(x)):
-        #         f.write("c" + str(i+2) + " = " + str(x[i]) + "\n")
-        #     f.close()
+        s = settings.task2[self.icod][self.icod2]
+        path = os.path.join(s["out_path"], file_path)
+
+        with open(path, 'w') as f:
+            f.write("METODO ESCOLHIDO: " + s["name"] + "\n")
+            f.write("INPUTS: c1 = " + str(c1) + "; c2 = " + str(c2) + "; c3 = " + str(c3) + "; c4 = " + str(c4) + "\n")
+            f.write("OUTPUT: x = "  +  str(x) +"\n")
+            f.close()
 
         # print("SUCESSFULLY SOLVED")
 
@@ -131,9 +156,23 @@ if __name__ == "__main__":
     c4 = 4
     tolm = 0.0001
     icod2 = 1
+    a = -1
+    b = 1
+    n = 3
+    x = 3
+    dx = 0.00001
+    dx2 = 0.0002
 
-    x = Function(icod=icod, c1=c1, c2=c2, c3=c3, c4=c4, tolm=tolm, icod2=icod2)
-    for i in range(2,6):
-        print(x.int_polinomial(1,3,i))
+    icod = [1,2,3,4]
+    icod2 = [[1,2], [1,2], [1,2,3], [1]]
+
+    for i in icod:
+        for j in icod2[i-1]:
+            k = Function(icod=1, c1=c1, c2=c2, c3=c3, c4=c4, tolm=tolm, icod2=2, a=a, b=b, n=n, x=x, dx=dx, dx2=dx2)
+            print()
+            k.solve()
+            print("OK")
+            print()
+
 
 

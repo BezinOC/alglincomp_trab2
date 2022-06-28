@@ -6,54 +6,63 @@ class Settings:
 
     #TASK 1 ---------------------------------------
 
-    task1_1 = {
-        "name": "Newton-Raphson",
-        "out_path": os.path.join(BASE_PATH, "task1_out", "newton")
-    }
-
-    task1_2 = {
-        "name": "Broyden",
-        "out_path": os.path.join(BASE_PATH, "task1_out", "broyden")
+    task1 = {
+        1: {
+            "name": "Newton-Raphson",
+            "out_path": os.path.join(BASE_PATH, "task1_out", "newton")
+        },
+        2: {
+            "name": "Broyden",
+            "out_path": os.path.join(BASE_PATH, "task1_out", "broyden")
+        }
     }
 
     #TASK 2 ---------------------------------------
 
-    task2_1 = {
-        1 : {
-            "name": "Newton-Raphson",
-            "out_path": os.path.join(BASE_PATH, "task2_out", "raiz", "newton")
+    task2 = {
+        1: {
+            1 : {
+                "name": "Newton-Raphson",
+                "out_path": os.path.join(BASE_PATH, "task2_out", "raiz", "newton")
+            },
+            2 : {
+                "name": "Bissecao",
+                "out_path": os.path.join(BASE_PATH, "task2_out", "raiz", "bissecao")
+            }
         },
-        2 : {
-            "name": "Broyden",
-            "out_path": os.path.join(BASE_PATH, "task2_out", "raiz", "broyden")
-        }
+        2: {
+            1 : {
+                "name": "Integracao Polinomial",
+                "out_path": os.path.join(BASE_PATH, "task2_out", "integral", "polinomial")
+            },
+            2 : {
+                "name": "Gauss-Legendre",
+                "out_path": os.path.join(BASE_PATH, "task2_out", "integral", "gauss")
+            }
+        },
+        3: {
+            1 : {
+                "name": "Derivada Passo a Frente",
+                "out_path": os.path.join(BASE_PATH, "task2_out", "derivada_df", "foward")
+            },
+            2 : {
+                "name": "Derivada Passo Atras",
+                "out_path": os.path.join(BASE_PATH, "task2_out", "derivada_df", "back")
+            },
+            3 : {
+                "name": "Derivada por Diferenca Central",
+                "out_path": os.path.join(BASE_PATH, "task2_out", "derivada_df", "central")
+            }
+        },
+        4: {
+            1 : {
+                "name": "Richard",
+                "out_path": os.path.join(BASE_PATH, "task2_out", "derivada_re", "richard")
+            }
+        }      
     }
 
-    task2_2 = {
 
-    }
-
-    task2_3 = {
-        1 : {
-            "name": "Derivada Passo a Frente",
-            "out_path": os.path.join(BASE_PATH, "task2_out", "derivada_df", "foward")
-        },
-        2 : {
-            "name": "Derivada Passo ATrás",
-            "out_path": os.path.join(BASE_PATH, "task2_out", "derivada_df", "back")
-        },
-        3 : {
-            "name": "Derivada por Diferença Central",
-            "out_path": os.path.join(BASE_PATH, "task2_out", "derivada_df", "central")
-        }
-    }
-
-    task2_4 = {
-        1 : {
-            "name": "Richard",
-            "out_path": os.path.join(BASE_PATH, "task2_out", "derivada_re", "richard")
-        },
-    }
 
     wi_pol = {
         2: {
@@ -229,54 +238,54 @@ class Settings:
             5: 0.9061798459386640
         },
         6: {
-            1: 19/288,
-            2: 75/288,
-            3: 50/288,
-            4: 50/288,
-            5: 75/288,
-            6: 19/288
+            1: 0.6612093864662645,
+            2: -0.6612093864662645,
+            3: -0.2386191860831969,
+            4: 0.2386191860831969,
+            5: -0.9324695142031521,
+            6: 0.9324695142031521
         },
         7: {
-            1: 41/840,
-            2: 216/840,
-            3: 27/840,
-            4: 272/840,
-            5: 27/840,
-            6: 216/840,
-            7: 41/840
+            1: 0,
+            2: 0.4058451513773972,
+            3: -0.4058451513773972,
+            4: -0.7415311855993945,
+            5: 0.7415311855993945,
+            6: -0.9491079123427585,
+            7: 0.9491079123427585
         },
         8: {
-            1: 751/17280,
-            2: 3577/17280,
-            3: 1323/17280,
-            4: 2989/17280,
-            5: 2989/17280,
-            6: 1323/17280,
-            7: 3577/17280,
-            8: 751/17280
+            1: -0.1834346424956498,
+            2: 0.1834346424956498,
+            3: -0.5255324099163290,
+            4: 0.5255324099163290,
+            5: -0.7966664774136267,
+            6: 0.7966664774136267,
+            7: -0.9602898564975363,
+            8: 0.9602898564975363
         },
         9: {
-            1: 989/28350,
-            2: 5888/28350,
-            3: -928/28350,
-            4: 10496/28350,
-            5: -4540/28350,
-            6: 10496/28350,
-            7: -928/28350,
-            8: 5888/28350,
-            9: 989/28350
+            1: 0,
+            2: -0.8360311073266358,
+            3: 0.8360311073266358,
+            4: -0.9681602395076261,
+            5: 0.9681602395076261,
+            6: -0.3242534234038089,
+            7: 0.3242534234038089,
+            8: -0.6133714327005904,
+            9: 0.6133714327005904
         },
         10: {
-            1: 2857/89600,
-            2: 15741/89600,
-            3: 1080/89600,
-            4: 19344/89600,
-            5: 5778/89600,
-            6: 5778/89600,
-            7: 19344/89600,
-            8: 1080/89600,
-            9: 15741/89600,
-            10: 2857/89600
+            1: -0.1488743389816312,
+            2: 0.1488743389816312,
+            3: -0.4333953941292472,
+            4: 0.4333953941292472,
+            5: -0.6794095682990244,
+            6: 0.6794095682990244,
+            7: -0.8650633666889845,
+            8: 0.8650633666889845,
+            9: -0.9739065285171717,
+            10: 0.9739065285171717
         }
     }
 
