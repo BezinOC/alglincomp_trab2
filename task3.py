@@ -67,7 +67,23 @@ class Function:
         with open(path, 'a') as f:
             f.write("INPUTS: " + f"m={str(self.m)}_c={str(self.c)}_k={str(self.k)}_a=" + ", ".join(str(a) for a in self.a) + "_w=" + ", ".join(str(w) for w in self.w) + f"_h={str(self.h)}_T={str(self.T)}")
         table.to_excel(path2)
+        print("SUCESSFULLY SOLVED")
+
+if __name__ == "__main__":
+
+    h=1 
+    T=10
+    m=1 
+    c=0.1
+    k=2
+    a1=1
+    a2=2
+    a3=1.5
+    w1=0.05
+    w2=1
+    w3=2
+
+    f = Function(h=h, T=T, m=m, c=c, k=k, a1=a1, a2=a2, a3=a3, w1=w1, w2=w2, w3=w3)
 
 
-f = Function(h=1, T=10, m=1, c=0.1, k=2, a1=1, a2=2, a3=1.5, w1=0.05, w2=1, w3=2)
 f.runge_kutta_nystrom()
