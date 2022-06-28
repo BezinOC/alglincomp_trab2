@@ -53,9 +53,9 @@ class Function:
             self.yl.append(yl)
             self.yll.append(yll)
             k += 1
-        table = pd.DataFrame(data={'deslocamento': self.y, 'velocidade': self.yl, 'aceleracao': self.yll, 'tempo': list(range(self.t0, self.T+1))})
+        table = pd.DataFrame(data={'deslocamento': self.y, 'velocidade': self.yl, 'aceleracao': self.yll, 'tempo': list(np.linspace(self.t0, self.T, int(self.N)+1))})
         return table
     
 
-f = Function(h=1, T=10, m=1, c=0.1, k=2, a1=1, a2=2, a3=1.5, w1=0.05, w2=1, w3=2)
+f = Function(h=0.01, T=10, m=1, c=0.1, k=2, a1=1, a2=2, a3=1.5, w1=0.05, w2=1, w3=2)
 print(f.runge_kutta())
