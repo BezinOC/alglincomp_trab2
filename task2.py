@@ -66,10 +66,22 @@ class Function:
             raise Exception("N must be between 2 and 10")
         l = b - a
         delta = l / (n - 1)
-        wi = settings.wi[n]
+        wi = settings.wi_pol[n]
         sum = 0
         for i in range(1, n+1):
             sum += self.evaluate(a + delta*(i-1)) * l * wi[i]
+        return sum
+
+    def quadratura(self, a, b, n):
+        if n < 2 or n > 10:
+            raise Exception("N must be between 2 and 10")
+        l = b - a
+        wi = settings.wi_gauss[n]
+        ti = settings.ti_gauss[n]
+        sum = 0
+        for i in range(1, n+1):
+            sum += self.evaluate(a + ((l/2) * (ti[i]+1))) * wi[i]
+        sum *= l/2
         return sum
 
     def solve(self):
@@ -113,21 +125,15 @@ class Function:
 if __name__ == "__main__":
 
     icod = 1
-    c1 = -2
-    c2 = 3
-    c3 = 4
-    c4 = -5
+    c1 = -1
+    c2 = 2
+    c3 = 2
+    c4 = 4
     tolm = 0.0001
     icod2 = 1
 
     x = Function(icod=icod, c1=c1, c2=c2, c3=c3, c4=c4, tolm=tolm, icod2=icod2)
-    for i in range(2,11):
+    for i in range(2,6):
         print(x.int_polinomial(1,3,i))
 
-# # print(f.foward_dif(x, d))
-# # print(f.back_dif(x, d))
-# # print(f.central_dif(x, d))
-# # print(f.richard(x, dx1=d, dx2=d*2))
 
-# print(f.newton_raphson())
-# print(f.biss(-1, 1))
