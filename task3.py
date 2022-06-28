@@ -71,7 +71,7 @@ class Function:
         table.plot(x='tempo', y='deslocamento', kind='line')
         plt.show()
         table.plot(x='tempo', y='velocidade', kind='line')
-        plt.show
+        plt.show()
         print("SUCESSFULLY SOLVED")
 
 if __name__ == "__main__":
