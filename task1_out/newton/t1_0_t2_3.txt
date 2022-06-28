@@ -1,0 +1,6 @@
+METODO ESCOLHIDO: Newton-Raphson
+INPUTS: t1 = 0; t2 = 3
+OUTPUTS: 
+c2 = 1.0
+c3 = 0.0
+c4 = 0.0
