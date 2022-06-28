@@ -203,6 +203,7 @@ class Function:
         
         with open(path, 'w') as f:
             f.write("METODO ESCOLHIDO: " + s["name"] + "\n")
+            f.write("TOL: " + str(self.tolm) + "\n")
             f.write("INPUTS: t1 = " + str(t1) + "; t2 = " + str(t2) + "\n")
             f.write("OUTPUTS: "  + "\n")
             for i in range(len(x)):
@@ -215,8 +216,8 @@ class Function:
 if __name__ == "__main__":
 
     icod = 2
-    t1 = 0.75
-    t2 = 6.5
+    t1 = 0.5
+    t2 = 5
     tolm = 0.0001
 
     x = Function(icod=icod, t1=t1, t2=t2, tolm=tolm)

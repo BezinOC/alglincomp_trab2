@@ -149,26 +149,26 @@ class Function:
 
 if __name__ == "__main__":
 
-    icod = 1
-    c1 = -1
-    c2 = 2
-    c3 = 2
-    c4 = 4
+    #icod = 1
+    c1 = 0.25
+    c2 = 1.2
+    c3 = -3
+    c4 = 1.2
     tolm = 0.0001
-    icod2 = 1
-    a = -1
-    b = 1
-    n = 3
-    x = 3
-    dx = 0.00001
-    dx2 = 0.0002
+    #icod2 = 1
+    a = 1
+    b = 5
+    n = 10
+    x = 2
+    dx = 0.1
+    dx2 = 2
 
     icod = [1,2,3,4]
     icod2 = [[1,2], [1,2], [1,2,3], [1]]
 
     for i in icod:
         for j in icod2[i-1]:
-            k = Function(icod=1, c1=c1, c2=c2, c3=c3, c4=c4, tolm=tolm, icod2=2, a=a, b=b, n=n, x=x, dx=dx, dx2=dx2)
+            k = Function(icod=i, c1=c1, c2=c2, c3=c3, c4=c4, tolm=tolm, icod2=j, a=a, b=b, n=n, x=x, dx=dx, dx2=dx2)
             print()
             k.solve()
             print("OK")
