@@ -40,7 +40,7 @@ class Function:
         next_yll = self.evaluate(t, y, yl)
         return (next_y, next_t, next_yl, next_yll)
     
-    def runge_kutta_nystron(self):
+    def runge_kutta_nystrom(self):
         t = self.t0
         y = self.y0
         yl = self.yl0
@@ -70,4 +70,4 @@ class Function:
 
 
 f = Function(h=1, T=10, m=1, c=0.1, k=2, a1=1, a2=2, a3=1.5, w1=0.05, w2=1, w3=2)
-f.runge_kutta_nystron()
+f.runge_kutta_nystrom()
