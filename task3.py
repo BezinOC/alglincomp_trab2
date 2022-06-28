@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import os
+import matplotlib.pyplot as plt
 from config import config
 settings = config.Settings()
 
@@ -67,19 +68,23 @@ class Function:
         with open(path, 'a') as f:
             f.write("INPUTS: " + f"m={str(self.m)}_c={str(self.c)}_k={str(self.k)}_a=" + ", ".join(str(a) for a in self.a) + "_w=" + ", ".join(str(w) for w in self.w) + f"_h={str(self.h)}_T={str(self.T)}")
         table.to_excel(path2)
+        table.plot(x='tempo', y='deslocamento', kind='line')
+        plt.show()
+        table.plot(x='tempo', y='velocidade', kind='line')
+        plt.show
         print("SUCESSFULLY SOLVED")
 
 if __name__ == "__main__":
 
-    h=1 
-    T=10
+    h=0.1 
+    T=100
     m=1 
     c=0.1
-    k=2
-    a1=1
+    k=1
+    a1=-1
     a2=2
     a3=1.5
-    w1=0.05
+    w1=0.2
     w2=1
     w3=2
 
