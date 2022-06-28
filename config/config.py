@@ -133,4 +133,9 @@ class Settings:
         }
     }
 
+    #TASK 3 ---------------------------------------
 
+    task3 = {
+        "name": "Runge-Kutta-Nystron",
+        "out_path": os.path.join(BASE_PATH, "task3_out", "Runge-Kutta-Nystron")
+    }
