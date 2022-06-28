@@ -1,5 +1,8 @@
 import numpy as np
 import pandas as pd
+import os
+from config import config
+settings = config.Settings()
 
 class Function:
     def __init__(self, h, T, m, c, k, a1, a2, a3, w1, w2, w3):
@@ -37,7 +40,7 @@ class Function:
         next_yll = self.evaluate(t, y, yl)
         return (next_y, next_t, next_yl, next_yll)
     
-    def runge_kutta(self):
+    def runge_kutta_nystrom(self):
         t = self.t0
         y = self.y0
         yl = self.yl0
@@ -54,8 +57,17 @@ class Function:
             self.yll.append(yll)
             k += 1
         table = pd.DataFrame(data={'deslocamento': self.y, 'velocidade': self.yl, 'aceleracao': self.yll, 'tempo': list(np.linspace(self.t0, self.T, int(self.N)+1))})
-        return table
-    
 
-f = Function(h=0.01, T=10, m=1, c=0.1, k=2, a1=1, a2=2, a3=1.5, w1=0.05, w2=1, w3=2)
-print(f.runge_kutta())
+        s = settings.task3
+        file_path = rf"m={str(self.m)}_c={str(self.c)}_k={str(self.k)}_a=" + r",".join(str(a) for a in self.a) + r"_w=" + ",".join(str(w) for w in self.w) + rf"_h={str(self.h)}_T={str(self.T)}.txt"
+        file_path2 = rf"m={str(self.m)}_c={str(self.c)}_k={str(self.k)}_a=" + r",".join(str(a) for a in self.a) + r"_w=" + ",".join(str(w) for w in self.w) + rf"_h={str(self.h)}_T={str(self.T)}.xlsx"
+        path = os.path.join(s["out_path"], file_path)
+        path2 = os.path.join(s["out_path"], file_path2)
+        np.savetxt(path, table)
+        with open(path, 'a') as f:
+            f.write("INPUTS: " + f"m={str(self.m)}_c={str(self.c)}_k={str(self.k)}_a=" + ", ".join(str(a) for a in self.a) + "_w=" + ", ".join(str(w) for w in self.w) + f"_h={str(self.h)}_T={str(self.T)}")
+        table.to_excel(path2)
+
+
+f = Function(h=1, T=10, m=1, c=0.1, k=2, a1=1, a2=2, a3=1.5, w1=0.05, w2=1, w3=2)
+f.runge_kutta_nystrom()
